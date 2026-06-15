@@ -1,23 +1,32 @@
 from selenium import webdriver
 from selenium.webdriver.common.by import By
+<<<<<<< Updated upstream
 from selenium.webdriver.common.keys import Keys
 # from selenium.webdriver.support.select import Select
 # from selenium.webdriver.chrome.options import Options
 from selenium.webdriver.support.wait import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
+=======
+from selenium.webdriver.common.action_chains import ActionChains
+>>>>>>> Stashed changes
 import pytest
 
 
 @pytest.fixture()
 def driver():
+<<<<<<< Updated upstream
     # options = Options()
     # options.add_experimental_option('detach', True)
     chrome_driver = webdriver.Chrome()
     chrome_driver.implicitly_wait(3)
+=======
+    chrome_driver = webdriver.Chrome()
+>>>>>>> Stashed changes
     chrome_driver.maximize_window()
     yield chrome_driver
 
 
+<<<<<<< Updated upstream
 def test_form_fill(driver):
     input_data = ['Mik', 'Maz', 'example@mail.ge', '9951234567', 'Arts',
                   'Pushkina st., Kalatushlina house', '01 May 1953']
@@ -76,3 +85,19 @@ def test_form_fill(driver):
     data = driver.find_element(By.CLASS_NAME, 'table-responsive')
     WebDriverWait(driver, 3).until(EC.visibility_of_element_located((By.CLASS_NAME, 'modal-content')))
     print(data.text)
+=======
+def test_in_shop2(driver):
+    driver.get('http://testshop.qa-practice.com/')
+
+    link = driver.find_element(By.LINK_TEXT, 'Customizable Desk')
+    cart_button = driver.find_element(By.CSS_SELECTOR, '[title="Shopping cart"]')
+    actions = ActionChains(driver)
+    actions.move_to_element(link)
+    actions.move_to_element(cart_button)
+    actions.click()
+    actions.perform()
+    driver.implicitly_wait(3)
+    assert 'Customizable Desk' in driver.find_element(
+        By.CLASS_NAME, 'product_display_name'
+    ).text
+>>>>>>> Stashed changes
